@@ -14,6 +14,12 @@ const getHoiDanIT = (req, res) => {
     res.render('sample.ejs')
 }
 
+const getUpdatePage = (req, res) => {
+    const userId = req.params.id;
+    console.log(">>> req.params: ", req.params, userId)
+    res.render('edit.ejs')
+}
+
 const postCreateUser = async (req, res) => {
     console.log(">>> req.body: ", req.body)
     let email = req.body.email;
@@ -50,5 +56,6 @@ module.exports = {
     getABC,
     getHoiDanIT,
     getCreatePage,
+    getUpdatePage,
     postCreateUser
 }

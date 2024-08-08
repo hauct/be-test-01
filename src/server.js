@@ -4,6 +4,7 @@ const configViewEngine = require('./config/viewEngine')
 const webRoutes = require('./routes/web')
 const connection = require('./config/database')
 const mongoose = require('mongoose')
+const Kitten = require('./models/Kitten')
 
 const app = express(); //app express
 const port = process.env.PORT || 8888;// port 
@@ -19,15 +20,7 @@ app.use(express.urlencoded({ extended:true }));
 // Khai báo routes
 app.use(webRoutes);
 
-const kittySchema = new mongoose.Schema({
-  name: String
-});
-
-const Kitten = mongoose.model('Kitten', kittySchema);
-
-const cat = new Kitten({ name: 'Meo meo' });
-
-console.log(cat.name); // 'Silence'
+const cat = new Kitten({ name: 'Hauct' });
 
 cat.save();
 

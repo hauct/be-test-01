@@ -1,10 +1,9 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-//shape data
 const kittySchema = new mongoose.Schema({
     name: String
-});
-
-const Kitten = mongoose.model('eric', kittySchema);
+  });
+  
+const Kitten = mongoose.model('erics', kittySchema);
 
 module.exports = Kitten;

@@ -20,9 +20,9 @@ app.use(express.urlencoded({ extended:true }));
 // Khai báo routes
 app.use(webRoutes);
 
-const cat = new Kitten({ name: 'Hauct' });
+// const cat = new Kitten({ name: 'Hauct' });
 
-cat.save();
+// cat.save();
 
 (async () => {
   try {

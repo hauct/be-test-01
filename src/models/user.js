@@ -1,11 +1,19 @@
 const mongoose = require('mongoose')
 
-const userSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    city: String
-  });
+const customerSchema = new mongoose.Schema({
+    name: {
+      type:String,
+      require:true
+    }
+    , address: String
+    , phone: String
+    , image: String
+    , email: String
+    , description: String
+  }
+, {timestamps : true}
+);
   
-const User = mongoose.model('user', userSchema);
+const Customer = mongoose.model('Customer', customerSchema);
 
-module.exports = User;
+module.exports = Customer;

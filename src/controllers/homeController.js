@@ -30,17 +30,10 @@ const postCreateUser = async (req, res) => {
     let name = req.body.name;
     let city = req.body.city;
     
-    // await User.create({
-    //     email:email,
-    //     name:name,
-    //     city:city
-    // }
-    // );
-
     await User.create({
-        email,
-        name,
-        city
+        email:email,
+        name:name,
+        city:city
     }
     );
 
@@ -57,10 +50,10 @@ const postUpdateUser = async (req, res) => {
     let name = req.body.name;
     let city = req.body.city;
     let userId = req.body.userId
-    // let {email, name, city} = req.body
-    console.log(">>> email = ", email, " name = ", name, " city = ", city, "userId = ", userId);
     
-    await updateUserById(email, name, city, userId);
+    await User.updateOne(
+        {_id: userId}, {email:email, name:name, city:city}
+    )
 
     res.redirect('/');
 }

@@ -6,7 +6,6 @@ const apiRoutes = require('./routes/api')
 
 const connection = require('./config/database')
 const mongoose = require('mongoose')
-const Kitten = require('./models/Kitten');
 const fileUpload = require('express-fileupload');
 
 const app = express(); //app express

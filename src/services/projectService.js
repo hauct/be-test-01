@@ -22,10 +22,36 @@ const createProject =  async (data) => {
     return null
 }
 
-const getProject = (data) => {
-    return data
+const getProject = async(queryString) => {
+    const page = queryString.page
+    const { filter
+        , limit
+        , population
+     } = apq(queryString)
+    delete filter.page;
+
+    let offset = (page - 1) * limit;
+    result = await Project.find(filter)
+                        .populate(population)
+                        .skip(offset)
+                        .limit(limit)
+                        .exec();
+    return result
+}
+
+const uProject =  async(data) => {
+    let result = await Project.updateOne({_id: data.id}, {...data})
+    return result
+}
+
+const dProject = async(id) => {
+    console.log(">>> id_", id)
+    let result = await Project.deleteById(id)
+    return result
 }
 
 module.exports = { createProject
     , getProject
+    , uProject
+    , dProject
  }

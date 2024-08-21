@@ -22,6 +22,12 @@ const {postCreateProject
     , deleteProject
 } = require('../controllers/projectController');
 
+const {postCreateTask
+    , getGetTask
+    , putUpdateTask
+    , deleteDeleteTask
+} = require('../controllers/taskController');
+
 routerAPI.get('/', (req, res) => {
     res.send("hello world with api")
 });
@@ -50,6 +56,11 @@ routerAPI.post('/projects', postCreateProject);
 routerAPI.get('/projects', getAllProject);
 routerAPI.put('/projects', updateProject);
 routerAPI.delete('/projects', deleteProject);
+
+routerAPI.post('/tasks', postCreateTask);
+routerAPI.get('/tasks', getGetTask);
+routerAPI.put('/tasks', putUpdateTask);
+routerAPI.delete('/tasks', deleteDeleteTask);
 
 
 

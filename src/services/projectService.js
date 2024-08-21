@@ -19,6 +19,19 @@ const createProject =  async (data) => {
         console.log(myProject)
         return newResult
     }
+    if (data.type === "REMOVE-USERS"){
+        // console.log(">>> check data: ", data)
+        // find project by id
+        let myProject = await Project.findById(data.projectId).exec();
+        
+        for (let i = 0; i < data.usersArr.length; i++) {
+            myProject.usersInfor.pull(data.usersArr[i]);
+        }
+        let newResult = await myProject.save();
+        
+        console.log(myProject)
+        return newResult
+    }
     return null
 }
 

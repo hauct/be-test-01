@@ -58,7 +58,6 @@ const uProject =  async(data) => {
 }
 
 const dProject = async(id) => {
-    console.log(">>> id_", id)
     let result = await Project.deleteById(id)
     return result
 }

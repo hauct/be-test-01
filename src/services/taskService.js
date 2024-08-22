@@ -8,12 +8,38 @@ const createTask =  async (data) => {
     }
 }
 
-const getTask =  async () => {
-    result = await Task.find({})
+const getTask =  async (queryString) => {
+    const page = queryString.page
+    const {filter, limit, population} = apq(queryString);
+    delete filter.page
+    
+    let offset = (page - 1) * limit
+
+    if (filter.description) {
+        filter.description = { $regex: filter.description, $options: 'i' };
+    }
+
+    result = await Task.find(filter)
+        .populate(population)
+        .skip(offset)
+        .limit(limit)
+        .exec();
+    return result
+}
+
+const updateTask =  async (data) => {
+    let result = await Task.updateOne({_id: data.id}, {...data})
+    return result
+}
+
+const deleteTask =  async (id) => {
+    let result = await Task.deleteById(id)
     return result
 }
 
 module.exports = {
     createTask
     , getTask
+    , updateTask
+    , deleteTask
 }

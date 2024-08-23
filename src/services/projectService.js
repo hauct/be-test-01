@@ -15,8 +15,6 @@ const createProject =  async (data) => {
             myProject.usersInfor.push(data.usersArr[i]);
         }
         let newResult = await myProject.save();
-        
-        console.log(myProject)
         return newResult
     }
     if (data.type === "REMOVE-USERS"){
@@ -26,6 +24,31 @@ const createProject =  async (data) => {
         
         for (let i = 0; i < data.usersArr.length; i++) {
             myProject.usersInfor.pull(data.usersArr[i]);
+        }
+        let newResult = await myProject.save();
+        
+        console.log(myProject)
+        return newResult
+    }
+    if (data.type === "ADD-TASKS"){
+        // console.log(">>> check data: ", data)
+        // find project by id
+        let myProject = await Project.findById(data.projectId).exec();
+        console.log(myProject)
+
+        for (let i = 0; i < data.tasksArr.length; i++) {
+            myProject.tasks.push(data.tasksArr[i]);
+        }
+        let newResult = await myProject.save();
+        return newResult
+    }
+    if (data.type === "REMOVE-TASKS"){
+        // console.log(">>> check data: ", data)
+        // find project by id
+        let myProject = await Project.findById(data.projectId).exec();
+        
+        for (let i = 0; i < data.tasksArr.length; i++) {
+            myProject.tasks.pull(data.tasksArr[i]);
         }
         let newResult = await myProject.save();
         

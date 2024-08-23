@@ -25,7 +25,7 @@ const taskSchema = new mongoose.Schema({
   , startDate: String
   , endDate: String
   , usersInfor: userSchema
-  , projectInfo: projectSchema
+  , projectInfor: projectSchema
   }
   , {
     timestamps: true //createdAt, updateAt
